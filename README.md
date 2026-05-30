@@ -56,8 +56,6 @@ The `MolecularAnalysisPlotter.plot_spatial_binding_interactive()` method produce
 
 - [Na⁺ spatial binding — carboxylic acid group](https://roevsw.github.io/mdanalysis-scripts/figures/spatial_binding_Na_carboxylic_acid.html)
 
-> **Note:** Interactive figures require the repository to be public with GitHub Pages enabled. Links will activate when the repository is made public.
-
 ## Usage
 
 Add `my_scripts/` to your `PYTHONPATH` to import the analysis classes directly:

@@ -36,7 +36,7 @@ Tools for studying the adsorption of organic molecules on montmorillonite clay s
 - **`ClayOrganicIonWaterAnalysisPlotter`** — Multi-component RDFs, competitive adsorption, bridge structures, stratified adsorption profiles, exchange kinetics, and selectivity coefficients.
 - **`ClayPMFPlotter`** — Unified PMF visualisation for all dimensionalities: 1D signed/symmetrised profiles and sampling diagnostics; 2D filled contour maps W(r,θ), marginals, coupling, conditional slices, and 3D surface views; 3D marginal panels W(r)/W(θ)/W(n_cat), fixed-axis contourf slices, and Kd-resolved plots; neural-ensemble uncertainty maps, loss curves, and ensemble coupling comparisons.
 
-### Neural-Network PMF (ClayPMFNeural)
+### Clay–Organic–Ion–Water Analysis (Neural-Network PMF)
 
 Neural-network representations of the 3D free-energy surface, building on `ClayPMF3D` WHAM results. Supports two backends: a pure-NumPy implementation and an optional PyTorch backend (`NeuralNetworkTorch`) for GPU-accelerated training.
 

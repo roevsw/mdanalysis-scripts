@@ -36,6 +36,21 @@ Tools for studying the adsorption of organic molecules on montmorillonite clay s
 - **`ClayOrganicIonWaterAnalysisPlotter`** — Multi-component RDFs, competitive adsorption, bridge structures, stratified adsorption profiles, exchange kinetics, and selectivity coefficients.
 - **`ClayPMFPlotter`** — Unified PMF visualisation for all dimensionalities: 1D signed/symmetrised profiles and sampling diagnostics; 2D filled contour maps W(r,θ), marginals, coupling, conditional slices, and 3D surface views; 3D marginal panels W(r)/W(θ)/W(n_cat), fixed-axis contourf slices, and Kd-resolved plots; neural-ensemble uncertainty maps, loss curves, and ensemble coupling comparisons.
 
+### Neural-Network PMF (ClayPMFNeural)
+
+Neural-network representations of the 3D free-energy surface, building on `ClayPMF3D` WHAM results. Supports two backends: a pure-NumPy implementation and an optional PyTorch backend (`NeuralNetworkTorch`) for GPU-accelerated training.
+
+- **`ClayPMFNeural`** — Fits a feedforward neural network to a single `ClayPMF3D` object. Two training strategies:
+  - **Approach A** (`fit_smooth`): trains directly on the WHAM PMF grid to produce a smooth, differentiable W(r, θ, n_cat).
+  - **Approach B** (`fit_reweighted`): computes per-frame WHAM weights from raw trajectory data, builds a finer-resolution unbiased P(r, θ, n_cat), and trains on that — avoiding coarse-binning artefacts of the original WHAM grid.
+  - `predict` / `predict_b` / `predict_both` — evaluate the learned surface at arbitrary coordinates.
+  - `tune_hyperparameters` — cross-validated grid search over network architecture and learning rate.
+  - `save` / `load` — `.npz` serialisation for checkpointing.
+
+- **`ClayPMFNeuralEnsemble`** — Pools data from multiple independent replicate `ClayPMF3D` runs into a single NN training session for a smoother, better-constrained free-energy surface. Also supports `fit_smooth_per_replicate` (one NN per replicate) for a deep ensemble with spatial uncertainty quantification via model spread.
+
+- **`ClayDrugValidator`** — Validation suite comparing a trained neural PMF against a reference PMF (e.g. from WHAM). Computes adsorption and desorption barriers, cation dependence, error statistics by region, and experimental Kd comparison (`validate_against_experiment`). Produces a multi-panel validation summary figure.
+
 ## Usage
 
 Add `my_scripts/` to your `PYTHONPATH` to import the analysis classes directly:

@@ -1,0 +1,114 @@
+def initialize_Solutes_by_type(self):
+    '''
+    Initialize separate Solute objects for each ion type in the system.
+    This properly handles multiple cation and anion types.
+    '''
+    
+    # Get unique ion types
+    cation_types = self._get_unique_ion_types(self.cations)
+    anion_types = self._get_unique_ion_types(self.anions)
+    
+    print(f"Initializing Solutes for multiple ion types:")
+    print(f"  Cation types: {list(cation_types.keys())}")
+    print(f"  Anion types: {list(anion_types.keys())}")
+    
+    # Initialize solute dictionaries
+    self.solutes_ci = {}  # Dictionary of cation solutes
+    self.solutes_ai = {}  # Dictionary of anion solutes
+    
+    # Initialize cation solutes
+    for cation_name, cation_group in cation_types.items():
+        print(f"  Initializing {cation_name} solute ({len(cation_group)} ions)...")
+        
+        # Use the first ion of this type as reference
+        reference_ion = cation_group[0]
+        
+        # Create solute object for this cation type
+        solute = Solute(reference_ion, self.waters)
+        
+        # Determine coordination radii for this specific ion type
+        solute.determine_cutoff(plot=False)
+        
+        self.solutes_ci[cation_name] = solute
+        print(f"    {cation_name}-water coordination radius: {solute.radii['water']:.2f} Å")
+    
+    # Initialize anion solutes
+    for anion_name, anion_group in anion_types.items():
+        print(f"  Initializing {anion_name} solute ({len(anion_group)} ions)...")
+        
+        # Use the first ion of this type as reference
+        reference_ion = anion_group[0]
+        
+        # Create solute object for this anion type
+        solute = Solute(reference_ion, self.waters)
+        
+        # Determine coordination radii for this specific ion type
+        solute.determine_cutoff(plot=False)
+        
+        self.solutes_ai[anion_name] = solute
+        print(f"    {anion_name}-water coordination radius: {solute.radii['water']:.2f} Å")
+    
+    # Also create combined solutes for backward compatibility
+    print(f"  Creating combined solutes for backward compatibility...")
+    
+    # Use the most abundant cation/anion type for combined solute
+    most_abundant_cation = max(cation_types.keys(), key=lambda x: len(cation_types[x]))
+    most_abundant_anion = max(anion_types.keys(), key=lambda x: len(anion_types[x]))
+    
+    self.solute_ci = self.solutes_ci[most_abundant_cation]
+    self.solute_ai = self.solutes_ai[most_abundant_anion]
+    
+    print(f"  Combined cation solute uses: {most_abundant_cation}")
+    print(f"  Combined anion solute uses: {most_abundant_anion}")
+    
+    print("Multi-type Solute initialization complete!")
+    
+    return self.solutes_ci, self.solutes_ai
+
+def get_coordination_radius_by_type(self, ion_type):
+    '''
+    Get coordination radius for a specific ion type.
+    
+    Parameters
+    ----------
+    ion_type : str
+        Ion type name (e.g., 'Na', 'K', 'Cl')
+    
+    Returns
+    -------
+    radius : float
+        Coordination radius in Angstroms
+    '''
+    
+    if hasattr(self, 'solutes_ci') and ion_type in self.solutes_ci:
+        return self.solutes_ci[ion_type].radii['water']
+    elif hasattr(self, 'solutes_ai') and ion_type in self.solutes_ai:
+        return self.solutes_ai[ion_type].radii['water']
+    else:
+        print(f"Ion type '{ion_type}' not found. Available types:")
+        if hasattr(self, 'solutes_ci'):
+            print(f"  Cations: {list(self.solutes_ci.keys())}")
+        if hasattr(self, 'solutes_ai'):
+            print(f"  Anions: {list(self.solutes_ai.keys())}")
+        return None
+
+def print_coordination_radii_summary(self):
+    '''Print summary of all coordination radii by ion type'''
+    
+    print("\n" + "="*50)
+    print("COORDINATION RADII BY ION TYPE")
+    print("="*50)
+    
+    if hasattr(self, 'solutes_ci'):
+        print("CATIONS:")
+        for ion_type, solute in self.solutes_ci.items():
+            radius = solute.radii['water']
+            print(f"  {ion_type}: {radius:.2f} Å")
+    
+    if hasattr(self, 'solutes_ai'):
+        print("\nANIONS:")
+        for ion_type, solute in self.solutes_ai.items():
+            radius = solute.radii['water']
+            print(f"  {ion_type}: {radius:.2f} Å")
+    
+    print("="*50)

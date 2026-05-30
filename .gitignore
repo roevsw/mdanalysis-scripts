@@ -1,0 +1,48 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.egg-info/
+dist/
+build/
+
+# Virtual environment
+.venv/
+
+# Jupyter
+.ipynb_checkpoints/
+
+# OS
+.DS_Store
+
+# IDE
+.vscode/
+
+# Empty/accidental files
+=
+ea
+MgC
+
+# GROMACS / shell scripts (not needed in repo)
+/ffbonded.itp
+/ffnonbonded.itp
+/rerun_energygrps.mdp
+/job1_rerun.sh
+/rerun_with_energygrps.sh
+/run_3_nvt.sh
+/run_analyze_energygrps.sh
+/run_9_angles.m
+/rename.py
+
+# Excluded packages/dirs
+/solvation_shells/
+/Scripts/
+/Free_energy_extras/
+my_scripts/unused/
+
+# Duplicate / backup files
+my_scripts/ClayPMF copy.py
+my_scripts/ClayPMF2D copy.py
+my_scripts/MolecularAnalysisPlotter.py.bak
+my_scripts/water_spatial_projection_methods.docx
+my_scripts/hydration_shells.ovito

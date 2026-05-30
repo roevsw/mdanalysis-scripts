@@ -34,7 +34,7 @@ Tools for studying the adsorption of organic molecules on montmorillonite clay s
 **Plotting**:
 
 - **`ClayOrganicIonWaterAnalysisPlotter`** — Multi-component RDFs, competitive adsorption, bridge structures, stratified adsorption profiles, exchange kinetics, and selectivity coefficients.
-- **`ClayPMFPlotter`** — PMF profiles (1D signed and symmetrised), umbrella window histograms, and sampling diagnostics.
+- **`ClayPMFPlotter`** — Unified PMF visualisation for all dimensionalities: 1D signed/symmetrised profiles and sampling diagnostics; 2D filled contour maps W(r,θ), marginals, coupling, conditional slices, and 3D surface views; 3D marginal panels W(r)/W(θ)/W(n_cat), fixed-axis contourf slices, and Kd-resolved plots; neural-ensemble uncertainty maps, loss curves, and ensemble coupling comparisons.
 
 ## Usage
 

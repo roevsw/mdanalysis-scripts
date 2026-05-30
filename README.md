@@ -13,11 +13,6 @@ Tools for characterising hydration shells around ions in aqueous electrolyte sol
 - **`ZDirectionalAnalysis`** — Density profiles along the z-axis, interface detection, and layer-resolved ion and water properties for interfacial systems (clays, membranes, bilayers).
 - **`MolecularAnalysis`** — General-purpose trajectory analysis for multi-component systems: RDFs, coordination environments, and spatial distributions.
 
-**Plotting** — each analysis class has a dedicated companion plotter for publication-ready figures:
-
-- **`MolecularAnalysisPlotter`** — RDFs, ion binding and competition, coordination analysis, time series.
-- **`ZDirectionalPlotter`** — z-density profiles and interface plots. Includes `PublicationExportMixin` for consistent figure export across all plotters.
-
 ### Clay–Organic–Ion–Water Analysis (Umbrella Sampling)
 
 Tools for studying the adsorption of organic molecules on montmorillonite clay surfaces in ionic aqueous environments, using GROMACS umbrella sampling data.
@@ -30,11 +25,6 @@ Tools for studying the adsorption of organic molecules on montmorillonite clay s
 - **`ClayMeanForce`** — Umbrella integration PMF from mean forces in GROMACS `pullf*.xvg` files (RFD, RBF, and Gaussian estimators).
 - **`ClayThermo`** — Thermodynamic decomposition of the PMF into enthalpy (ΔH) and entropy (−TΔS) contributions from per-window EDR files.
 - **`ClayConvergence`** — Block and cumulative WHAM convergence analysis to assess PMF convergence as a function of simulation length.
-
-**Plotting**:
-
-- **`ClayOrganicIonWaterAnalysisPlotter`** — Multi-component RDFs, competitive adsorption, bridge structures, stratified adsorption profiles, exchange kinetics, and selectivity coefficients.
-- **`ClayPMFPlotter`** — Unified PMF visualisation for all dimensionalities: 1D signed/symmetrised profiles and sampling diagnostics; 2D filled contour maps W(r,θ), marginals, coupling, conditional slices, and 3D surface views; 3D marginal panels W(r)/W(θ)/W(n_cat), fixed-axis contourf slices, and Kd-resolved plots; neural-ensemble uncertainty maps, loss curves, and ensemble coupling comparisons.
 
 ### Clay–Organic–Ion–Water Analysis (Neural-Network PMF)
 
@@ -50,6 +40,15 @@ Neural-network representations of the 3D free-energy surface, building on `ClayP
 - **`ClayPMFNeuralEnsemble`** — Pools data from multiple independent replicate `ClayPMF3D` runs into a single NN training session for a smoother, better-constrained free-energy surface. Also supports `fit_smooth_per_replicate` (one NN per replicate) for a deep ensemble with spatial uncertainty quantification via model spread.
 
 - **`ClayDrugValidator`** — Validation suite comparing a trained neural PMF against a reference PMF (e.g. from WHAM). Computes adsorption and desorption barriers, cation dependence, error statistics by region, and experimental Kd comparison (`validate_against_experiment`). Produces a multi-panel validation summary figure.
+
+### Plotting
+
+Each analysis domain has a dedicated companion plotter for publication-ready figures. All plotters share a `PublicationExportMixin` for consistent figure export.
+
+- **`MolecularAnalysisPlotter`** — RDFs, ion binding and competition, coordination analysis, time series. (Ion solvation shell analysis.)
+- **`ZDirectionalPlotter`** — z-density profiles and interface plots. (Ion solvation / interfacial systems.)
+- **`ClayOrganicIonWaterAnalysisPlotter`** — Multi-component RDFs, competitive adsorption, bridge structures, stratified adsorption profiles, exchange kinetics, and selectivity coefficients. (Clay–organic–ion–water systems.)
+- **`ClayPMFPlotter`** — Unified PMF visualisation for all dimensionalities: 1D signed/symmetrised profiles and sampling diagnostics; 2D filled contour maps W(r,θ), marginals, coupling, conditional slices, and 3D surface views; 3D marginal panels W(r)/W(θ)/W(n_cat), fixed-axis contourf slices, and Kd-resolved plots; neural-ensemble uncertainty maps, loss curves, and ensemble coupling comparisons. (Umbrella sampling and neural-network PMF.)
 
 ## Usage
 

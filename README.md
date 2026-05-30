@@ -50,6 +50,14 @@ Each analysis domain has a dedicated companion plotter for publication-ready fig
 - **`ClayOrganicIonWaterAnalysisPlotter`** — Multi-component RDFs, competitive adsorption, bridge structures, stratified adsorption profiles, exchange kinetics, and selectivity coefficients. (Clay–organic–ion–water systems.)
 - **`ClayPMFPlotter`** — Unified PMF visualisation for all dimensionalities: 1D signed/symmetrised profiles and sampling diagnostics; 2D filled contour maps W(r,θ), marginals, coupling, conditional slices, and 3D surface views; 3D marginal panels W(r)/W(θ)/W(n_cat), fixed-axis contourf slices, and Kd-resolved plots; neural-ensemble uncertainty maps, loss curves, and ensemble coupling comparisons. (Umbrella sampling and neural-network PMF.)
 
+#### Interactive 3D Figures
+
+The `MolecularAnalysisPlotter.plot_spatial_binding_interactive()` method produces fully interactive 3D visualisations (rotate, zoom, pan) that can be exported as standalone HTML files.
+
+- [Na⁺ spatial binding — carboxylic acid group](https://roevsw.github.io/mdanalysis-scripts/figures/spatial_binding_Na_carboxylic_acid.html)
+
+> **Note:** Interactive figures require the repository to be public with GitHub Pages enabled. Links will activate when the repository is made public.
+
 ## Usage
 
 Add `my_scripts/` to your `PYTHONPATH` to import the analysis classes directly:

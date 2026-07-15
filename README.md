@@ -55,7 +55,7 @@ Each analysis domain has a dedicated companion plotter for publication-ready fig
 The `MolecularAnalysisPlotter.plot_spatial_binding_interactive()` method produces fully interactive 3D visualisations (rotate, zoom, pan) that can be exported as standalone HTML files.
 
 - [Na⁺ spatial binding — carboxylic acid group](https://roevsw.github.io/mdanalysis-scripts/figures/spatial_binding_Na_carboxylic_acid.html)
-- [Clay polyhedra — Si tetrahedra + Mg octahedra (MMT)](https://roevsw.github.io/mdanalysis-scripts/figures/clay_polyhedra_full.html)
+- [Clay polyhedra — Si tetrahedra + Mg octahedra (CLAYFF MMT)](https://roevsw.github.io/mdanalysis-scripts/figures/clay_polyhedra_full.html)
 
 ## Usage
 
